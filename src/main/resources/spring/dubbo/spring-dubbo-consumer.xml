@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="matrix-web-redis" owner="matrix" organization="le"/>
+    <!-- 使用zookeeper注册中心暴露服务地址 -->
+    <dubbo:registry address="${dubbo.registry.zkAddr}"/>
+    <!--服务引用列表-->
+    <!--关于reference属性配置看http://dubbo.io/User+Guide-zh.htm#UserGuide-zh-%253Cdubbo%253Areference%252F%253E-->
+    <!-- 调用HelloWorldFacade服务
+           interface     服务接口名
+           id            服务引用BeanId
+           check         启动时检查提供者是否存在，true报错，false忽略
+    -->
+    <dubbo:reference interface="com.le.matrix.template.facade.HelloWorldFacade" id="helloWorldService"
+                     check="false"/>
+    <!-- 调用HelloWorldFacade服务
+           interface     服务接口名
+           id            服务引用BeanId
+           check         启动时检查提供者是否存在，true报错，false忽略
+           url           点对点直连服务提供者地址，将绕过注册中心        调试时候经常使用，线上不要用，否则不会注册众测中心，也不会有负载等等功能
+    -->
+    <dubbo:reference interface="com.le.matrix.template.facade.HelloWorld3Facade" id="helloWorld3Service"
+                     check="false" url="dubbo://localhost:8888/services/"/>
+    <!-- 调用HelloWorld5Facade服务
+           interface     服务接口名
+           id            服务引用BeanId
+           check         启动时检查提供者是否存在，true报错，false忽略
+           group         服务分组，当一个接口有多个实现，可以用分组区分，必需和服务提供方一致
+           retries       远程服务调用重试次数，不包括第一次调用，不需要重试请设为0
+           version       服务版本，与服务提供者的版本一致
+    -->
+    <!--注意：连接rest的服务时候，rs.ws定义必须在接口中定义，否则报错You must use at least one, but no more than one http method annotation on:。
+    如何定义详细看com.le.matrix.template.facade.HelloWorld5Facade-->
+    <dubbo:reference interface="com.le.matrix.template.facade.HelloWorld5Facade"
+                     id="helloWorld5Service"
+                     check="false" version="10.0"/>
+    <!-- 调用UserFacade服务
+    protocol      指定使用协议 如果服务提供多个协议支持，消费端必须指定使用协议
+    -->
+    <dubbo:reference interface="com.le.matrix.template.facade.UserFacade" id="userService" check="false"
+                     protocol="dubbo"/>
+</beans>
