@@ -13,9 +13,9 @@
     <appender name="file"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
         <Encoding>UTF-8</Encoding>
-        <File>matrix/matrix-web-template.log</File>
+        <File>d:/matrix/matrix-web-template.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>matrix/matrix-web-template-%d{yyyy-MM-dd}.log
+            <FileNamePattern>d:/matrix/matrix-web-template-%d{yyyy-MM-dd}.log
             </FileNamePattern>
             <MaxHistory>10</MaxHistory>
             <TimeBasedFileNamingAndTriggeringPolicy
