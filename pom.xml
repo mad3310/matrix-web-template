@@ -60,7 +60,7 @@
 
     <dependencyManagement>
         <dependencies>
-
+        
         </dependencies>
     </dependencyManagement>
     <dependencies>
@@ -91,7 +91,12 @@
             <artifactId>poi</artifactId>
             <version>3.10-beta2</version>
         </dependency>
-
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+         </dependency>
     </dependencies>
     <build>
         <finalName>matrix-web-template</finalName>
@@ -149,34 +154,55 @@
     </build>
     <!--私有仓库配置  begin-->
     <repositories>
-        <!--私有仓库 url-->
+         <!--私有仓库 url-->
         <repository>
+            <!-- 
             <id>Matrix-Thirdparty repository</id>
             <name>Letv.com Repository</name>
             <url>http://maven.letv.cn/nexus/content/repositories/Matrix-Thirdparty/</url>
+             -->
+            <id>polex-thrid-repository</id>
+            <name>polex thridparty Repository</name>
+            <url>http://10.0.13.140:8081/nexus/content/repositories/polex-thrid-repository/</url>
         </repository>
         <repository>
+            <!-- 
             <id>Matrix-Snapshot repository</id>
             <name>Letv.com Repository</name>
             <url>http://maven.letv.cn/nexus/content/repositories/Matrix-Snapshot/</url>
+             -->
+            <id>polex-Snapshot</id>
+            <name>polex-Snapshot repository</name>
+            <url>http://10.0.13.140:8081/nexus/content/repositories/polex-Snapshot/</url>             
         </repository>
         <repository>
+            <!-- 
             <id>Matrix-Release repository</id>
             <name>Letv.com Repository</name>
             <url>http://maven.letv.cn/nexus/content/repositories/Matrix-Release/</url>
+             -->
+            <id>polex-release</id>
+            <name>polex-release respository</name>
+            <url>http://10.0.13.140:8081/nexus/content/repositories/polex-release/</url>
         </repository>
         <repository>
+           <!-- 
             <id>letv.public repository</id>
             <name>Letv.com Repository</name>
             <url>http://maven.letv.cn/nexus/content/groups/public/</url>
+           -->
+            <id>public</id>
+            <name>Public Repositories</name>
+            <url>http://10.0.13.140:8081/nexus/content/groups/public/</url>
         </repository>
     </repositories>
     <!--私有仓库配置  end-->
     <!--私有插件配置 begin-->
     <pluginRepositories>
-        <!--私有仓库插件 url-->
+       <!--私有仓库插件 url-->
         <pluginRepository>
-            <id>letv.public plugin</id>
+            <!-- 
+             <id>letv.public plugin</id>
             <name>Letv.com Repository</name>
             <url>http://maven.letv.cn/nexus/content/groups/public/</url>
             <releases>
@@ -185,20 +211,41 @@
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
+             -->    
+            <id>public</id>
+            <name>Public Repositories</name>
+            <url>http://10.0.13.140:8081/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>   
         </pluginRepository>
     </pluginRepositories>
     <!--deploy begin-->
     <distributionManagement>
         <!--deploy url-->
+        <!--deploy url-->
         <repository>
+             <!-- 
             <id>project-release</id>
             <name>Projects Release repository</name>
             <url>http://maven.letv.cn/nexus/content/repositories/Matrix-Release/</url>
+             -->
+            <id>polex-release</id>
+            <name>polex-release respository</name>
+            <url>http://10.0.13.140:8081/nexus/content/repositories/polex-release/</url>
         </repository>
         <snapshotRepository>
+            <!-- 
             <id>project-snapshots</id>
             <name>Projects SnapShot repository</name>
             <url>http://maven.letv.cn/nexus/content/repositories/Matrix-Snapshot/</url>
+             -->
+            <id>polex-Snapshot</id>
+            <name>polex-Snapshot repository</name>
+            <url>http://10.0.13.140:8081/nexus/content/repositories/polex-Snapshot/</url> 
         </snapshotRepository>
     </distributionManagement>
     <!--deploy end-->
